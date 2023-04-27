@@ -42,7 +42,7 @@ def random_start_duration
 end
 
 def random_datetime
-  DateTime.now + (rand * 30)
+  DateTime.now + (rand * 365)
 end
 
 def delete_flight_records

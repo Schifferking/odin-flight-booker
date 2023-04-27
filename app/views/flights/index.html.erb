@@ -1,0 +1,14 @@
+<%= form_with model: @events, method: "get" do |f| %>
+  <%= f.label(:departure_airport) %>
+  <%= select_tag(:departure_airport_id, options_for_select(@codes)) %>
+  <%= f.label(:arrival_airport) %>
+  <%= select_tag(:arrival_airport_id, options_for_select(@codes)) %>
+  <%= f.label(:passengers) %>
+  <%= select_tag(:num_tickets, options_for_select(@tickets)) %>
+  <%= f.label(:start) %>
+  <%= select_month(Date.today) %>
+  <%= select_day(Date.today.day) %>
+  <%= select_year(Date.today, :start_year => Date.today.year, 
+                  :end_year => 1.year.from_now.year) %>
+  <%= f.submit "Search flights"%>
+<% end %>
