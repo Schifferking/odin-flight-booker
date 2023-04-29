@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   def index
+    @flight = Flight.new
     @codes = Airport.all.map { |a| [a.code, a.id] }
     @tickets = [['1', 1], ['2', 2], ['3', 3], ['4', 4]]
     @flights = Flight.dac(31)
