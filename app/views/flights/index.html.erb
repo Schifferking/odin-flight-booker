@@ -1,14 +1,25 @@
-<%= form_with model: @events, method: "get" do |f| %>
-  <%= f.label(:departure_airport) %>
-  <%= select_tag(:departure_airport_id, options_for_select(@codes)) %>
-  <%= f.label(:arrival_airport) %>
-  <%= select_tag(:arrival_airport_id, options_for_select(@codes)) %>
-  <%= f.label(:passengers) %>
-  <%= select_tag(:num_tickets, options_for_select(@tickets)) %>
-  <%= f.label(:start) %>
-  <%= select_month(Date.today) %>
-  <%= select_day(Date.today.day) %>
-  <%= select_year(Date.today, :start_year => Date.today.year, 
-                  :end_year => 1.year.from_now.year) %>
+<%= form_with model: Flight.new, url: flights_path, method: "get" do |f| %>
+  <%= f.label(:flight, :departure_airport) %>
+  <%= select_tag('flight[departure_airport_id]', options_for_select(@codes)) %>
+  <%= f.label(:flight, :arrival_airport) %>
+  <%= select_tag('flight[arrival_airport_id]', options_for_select(@codes)) %>
+  <%= f.label(:flight, :passengers) %>
+  <%= select_tag('flight[num_tickets]', options_for_select(@tickets)) %>
+  <%= f.label(:flight, :start) %>
+  <%= select_tag('flight[start]', options_from_collection_for_select(Flight.dates, 'start', :date_formatted)) %>
   <%= f.submit "Search flights"%>
+<% end %>
+
+<% if @flights.any? %>
+  <ul>
+    <% @flights.each do |fl| %>
+      <li><%= "Departure airport: #{fl.departure_airport.code},
+               arrival airport: #{fl.arrival_airport.code},
+               number of passengers: #{fl.num_tickets},
+               flight date: #{fl.start.strftime("%m/%d/%Y %H:%M")}" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No flights found. Try changing some of the above options.</p>
 <% end %>
