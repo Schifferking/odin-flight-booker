@@ -1,5 +1,5 @@
 <%= form_with model: @booking do |f| %>
-  <%= f.label("Start date: #{@booking.flight.start}") %>
+  <%= f.label("Start date: #{@booking.flight.start.strftime("%m/%d/%Y %H:%M")}") %>
   <%= f.label("Departure airport: #{@booking.flight.departure_airport.code}") %>
   <%= f.label("Arrival airport: #{@booking.flight.arrival_airport.code}") %>
   <%= f.label("Flight id: #{@booking.flight_id}") %>

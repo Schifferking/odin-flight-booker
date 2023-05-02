@@ -1,0 +1,17 @@
+<h1>Flight information</h1>
+<h3>Departure airport</h3>
+<p><%= @booking.flight.departure_airport.code %></p>
+<h3>Arrival airport</h3>
+<p><%= @booking.flight.arrival_airport.code %></p>
+<h3>Flight date</h3>
+<p><%= @booking.flight.start.strftime("%m/%d/%Y %H:%M")%></p>
+<h3>Passengers number</h3>
+<p><%= @booking.flight.num_tickets %></p>
+<h2>Passengers information</h2>
+<ul>
+<% @booking.passengers.each do |p| %>
+  <li>
+    <%= "Name: #{p.name}, email: #{p.email}" %>
+  </li>
+<% end %>
+</ul>
