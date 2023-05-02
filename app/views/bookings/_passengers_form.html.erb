@@ -1,0 +1,17 @@
+<%= form_with model: @booking do |f| %>
+  <%= f.label("Start date: #{@booking.flight.start.strftime("%m/%d/%Y %H:%M")}") %>
+  <%= f.label("Departure airport: #{@booking.flight.departure_airport.code}") %>
+  <%= f.label("Arrival airport: #{@booking.flight.arrival_airport.code}") %>
+  <%= f.label("Flight id: #{@booking.flight_id}") %>
+  <%= f.hidden_field(:flight_id, value: @booking.flight_id) %>
+
+  <%= f.fields_for :passengers do |sf| %>
+    <%= sf.label(:name) %>
+    <%= sf.text_field(:name) %>
+    <%= sf.label(:email) %>
+    <%= sf.text_field(:email) %>
+    <br>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,16 @@
+<%= form_with model: Flight.new, url: new_booking_path, method: "get" do |f| %>
+  <% if @flights.any? %>
+      <% @flights.each do |fl| %>
+        <%= f.label(:flight_id, 
+                    "Departure airport: #{fl.departure_airport.code},
+                    arrival airport: #{fl.arrival_airport.code},
+                    number of passengers: #{fl.num_tickets},
+                    flight date: #{fl.start.strftime("%m/%d/%Y %H:%M")}") %>
+        <%= f.radio_button(:flight_id, fl.id) %>
+        <%= f.hidden_field(:num_tickets, value: fl.num_tickets) %>
+      <% end %>
+  <% else %>
+    <p>No flights found. Try changing some of the above options.</p>
+  <% end %>
+  <%= f.submit "Make a reservation" %>
+<% end %>

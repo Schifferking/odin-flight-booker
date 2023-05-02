@@ -1,0 +1,11 @@
+<%= form_with model: @flight, url: flights_path, method: "get" do |f| %>
+  <%= f.label(:flight, :departure_airport) %>
+  <%= select_tag('flight[departure_airport_id]', options_for_select(@codes)) %>
+  <%= f.label(:flight, :arrival_airport) %>
+  <%= select_tag('flight[arrival_airport_id]', options_for_select(@codes)) %>
+  <%= f.label(:flight, :passengers) %>
+  <%= select_tag('flight[num_tickets]', options_for_select(@tickets)) %>
+  <%= f.label(:flight, :start) %>
+  <%= select_tag('flight[start]', options_from_collection_for_select(Flight.dates, 'start', :date_formatted)) %>
+  <%= f.submit "Search flights"%>
+<% end %>
