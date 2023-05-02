@@ -1,8 +1,7 @@
 class Flight < ApplicationRecord
   belongs_to :departure_airport, class_name: "Airport"
   belongs_to :arrival_airport, class_name: "Airport"
-  has_many :bookings # Maybe delete this line later
-  # (maybe include inverse_of: Other_model_name)
+  has_many :bookings
 
   # Search by departure airport id
   scope :dac, ->(id) { where(departure_airport_id: id) }
